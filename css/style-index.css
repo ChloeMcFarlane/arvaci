@@ -1,0 +1,385 @@
+/* ─────────────────────────────────────────────
+     FONT FACES
+  ───────────────────────────────────────────── */
+  @font-face {
+    font-family: 'Alumni Sans Pinstripe';
+    src: url('../arvaci-ASSETS/AlumniSansPinstripe-Regular.ttf') format('truetype');
+    font-weight: 100 900; 
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Alumni Sans Pinstripe';
+    src: url('../arvaci-ASSETS/AlumniSansPinstripe-Italic.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Poiret One';
+    src: url('../arvaci-ASSETS/PoiretOne-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Tilt Warp';
+    src: url('../arvaci-ASSETS/TiltWarp-Regular-VariableFont_XROT,YROT.ttf') format('truetype');
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ─────────────────────────────────────────────
+     DESIGN TOKENS
+  ───────────────────────────────────────────── */
+  :root {
+    /* Neutral Palette */
+    --dust-grey: #e3dbd7ff;
+    --almond-cream: #e9dbcbff;
+    --soft-peach: #fdde9bff;
+    --coffee-bean: #0E0306ff;
+    --dark-coffee: #2d1b0fff;
+    --dark-coffee-2: #2e231fff;
+    --pitch-black: #130e0dff;
+    --black: #070403ff;
+    --mahogany-red: #7c2214ff;
+  
+    /* Animation */
+    --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* ─────────────────────────────────────────────
+    BODY CONFIGURATION
+  ───────────────────────────────────────────── */
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--pitch-black);
+    overflow-x: hidden;
+  }
+
+  /* ─────────────────────────────────────────────
+    NAV BAR (Overlaying Hero at the Top)
+  ───────────────────────────────────────────── */
+  header {
+    position: absolute; 
+    top: 1rem;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background-color: rgba(233, 219, 203, 0.92); 
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    margin: 1rem;
+    border: 1px solid transparent;
+    border-radius: 10px;
+  }
+  
+  #navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 20px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Hidden by default on desktop view */
+  #brand {
+    display: none;
+    text-decoration: none;
+    color: var(--dark-coffee);
+    font-family: 'Tilt Warp', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    gap: 5rem;
+    transition: var(--transition-base);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-15px);
+      transition: max-height var(--transition-base), opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
+    }
+
+    .nav-links.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: var(--dark-coffee);
+    font-family: 'Alumni Sans Pinstripe', 'Times New Roman', Times, serif;
+    font-size: 2.1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-links li a:hover {
+    color: var(--mahogany-red);
+  }
+  
+  /* Hamburger Toggle Button Styling */
+  .nav-toggle {
+    display: none; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+    padding: 5px;
+    z-index: 1040;
+  }
+  
+  .nav-toggle span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: var(--dark-coffee);
+    border-radius: 2px;
+    transition: var(--transition-base);
+  }
+
+      /* ─────────────────────────────────────────────
+    CONTAINER
+  ───────────────────────────────────────────── */
+
+  .container{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  /* ─────────────────────────────────────────────
+    HERO SECTION (Full Bleed Layout starting at top: 0)
+  ───────────────────────────────────────────── */
+  #hero {
+    position: relative;
+    width: 100vw;
+    height: 100vh; 
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .hero-overlay-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-overlay-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  #page-title {
+    position: relative;
+    z-index: 2;
+    font-family: 'Tilt Warp', 'Times New Roman', Times, serif;
+    color: var(--almond-cream);
+    font-size: clamp(10.2rem, 20vw, 17rem);
+    white-space: nowrap;
+    font-weight: 600;
+    text-align: center;
+    padding: 0 20px;
+    text-shadow: 0 4px 30px rgba(7, 4, 3, 0.45);
+  }
+
+    /* ─────────────────────────────────────────────
+    INTRO
+  ───────────────────────────────────────────── */
+
+  #intro {
+    background-color: var(--coffee-bean);
+    padding-bottom: 4.5rem;
+  }
+
+  .intro-header {
+    text-align: center;
+    padding: 4rem 0 2.5rem;
+  }
+
+  .intro-header h2{
+    font-family: 'Tilt Warp', 'Times New Roman', Times, serif;
+    color: var(--almond-cream);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    letter-spacing: 0.03rem;
+    margin: 0;
+  }
+
+  .intro-header h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: var(--soft-peach);
+    margin: 1rem auto 0;
+  }
+
+  #intro p{
+    color: var(--dust-grey);
+  }
+
+  .grid-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .grid-wrapper img {
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  .grid-wrapper img:nth-child(1),
+  .grid-wrapper img:nth-child(3) {
+    height: 250px;
+  }
+
+  .grid-wrapper img:nth-child(2) {
+    height: 350px;
+  }
+
+  /* ─────────────────────────────────────────────
+    STORY
+  ───────────────────────────────────────────── */
+  #story {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background-image: url('../arvaci-ASSETS/sitepic-2.png');
+    background-size: cover;
+    background-position: center;
+    padding: 6rem 2rem;
+  }
+
+  #copy-wrapper{
+    position: relative;
+    max-width: 640px;
+    padding: 3rem;
+    background-color: rgba(253, 222, 155, 0.52);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(253, 222, 155, 0.3);
+    border-radius: 10px;
+  }
+
+  #copy-wrapper h3{
+    font-family: 'Tilt Warp', 'Times New Roman', Times, serif;
+    color: var(--coffee-bean);
+    margin-top: 0;
+  }
+
+  #copy-wrapper p{
+    color: var(--coffee-bean);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+
+
+  /* ─────────────────────────────────────────────
+    RESPONSIVE MOBILE VIEW 
+  ───────────────────────────────────────────── */
+  @media (max-width:970px) {
+    #page-title {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #navbar {
+      /* Splits space between your brand (left) and hamburger (right) */
+      justify-content: space-between; 
+      min-height: 60px;
+    }
+
+    /* Makes the brand selector visible exclusively on mobile view */
+    #brand {
+      display: block;
+    }
+  
+    .nav-toggle {
+      display: flex; 
+    }
+  
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: var(--almond-cream); 
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+      padding: 30px 0;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+  
+    .nav-toggle.open span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .nav-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-toggle.open span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    #page-title {
+      letter-spacing: .2rem;
+    }
+
+    .grid-wrapper {
+      gap: 1rem;
+    }
+
+    .grid-wrapper img:nth-child(1),
+    .grid-wrapper img:nth-child(3) {
+      height: 160px;
+    }
+
+    .grid-wrapper img:nth-child(2) {
+      height: 220px;
+    }
+
+    #story {
+      padding: 4rem 1rem;
+    }
+
+    #copy-wrapper {
+      padding: 2rem;
+    }
+  }
