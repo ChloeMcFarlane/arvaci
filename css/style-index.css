@@ -24,13 +24,6 @@
     font-style: normal;
     font-display: swap;
   }
-  
-  @font-face {
-    font-family: 'Tilt Warp';
-    src: url('../arvaci-ASSETS/TiltWarp-Regular-VariableFont_XROT,YROT.ttf') format('truetype');
-    font-style: normal;
-    font-display: swap;
-  }
 
   /* ─────────────────────────────────────────────
      DESIGN TOKENS
@@ -59,6 +52,18 @@
     padding: 0;
     background-color: var(--dust-grey);
     overflow-x: hidden;
+    font-family: sans-serif;
+    line-height: 1.5;
+  }
+
+  /* ─────────────────────────────────────────────
+    ACCESSIBILITY: FOCUS STATES
+  ───────────────────────────────────────────── */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--mahogany-red);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
   /* ─────────────────────────────────────────────
@@ -93,7 +98,7 @@
     display: none;
     text-decoration: none;
     color: var(--dark-coffee);
-    font-family: 'Tilt Warp', sans-serif;
+    font-family: sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: 0.05rem;
@@ -224,7 +229,7 @@
   #page-title {
     position: relative;
     z-index: 2;
-    font-family: 'Tilt Warp', 'Times New Roman', Times, serif;
+    font-family: sans-serif;
     color: var(--almond-cream);
     font-size: clamp(10.2rem, 20vw, 17rem);
     white-space: nowrap;
@@ -247,7 +252,7 @@
   }
 
   .intro-header h2{
-    font-family: 'Tilt Warp', 'Times New Roman', Times, serif;
+    font-family: sans-serif;
     color: var(--coffee-bean);
     font-size: clamp(2rem, 5vw, 3.2rem);
     letter-spacing: 0.03rem;
@@ -319,7 +324,7 @@
   }
 
   #copy-wrapper h3{
-    font-family: 'Tilt Warp', 'Times New Roman', Times, serif;
+    font-family: sans-serif;
     color: var(--coffee-bean);
     margin-top: 0;
     letter-spacing: 0.08rem;
@@ -344,8 +349,233 @@
 
 
   /* ─────────────────────────────────────────────
-    RESPONSIVE MOBILE VIEW 
+    OFFERS / MENU LAUNCH POINT
   ───────────────────────────────────────────── */
+  #offers {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .left-block {
+    flex: 0 0 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: var(--dark-coffee);
+    color: transparent;
+    border-radius: 28px;
+    padding: 2.5rem;
+    gap: 1.5rem;
+  }
+
+  .offer-arrow {
+    width: 2.75rem;
+    height: 2.75rem;
+    color: var(--soft-peach);
+    align-self: flex-end;
+  }
+
+  .left-block h3 {
+    font-family: sans-serif;
+    font-size: clamp(2.7rem, 10.6vw, 2.3rem);
+    line-height: 1.35;
+    margin: 0;
+    color: var(--almond-cream);
+  }
+
+  .right-blocks {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .right-blocks a {
+    text-decoration: none;
+  }
+
+  .block {
+    position: relative;
+    min-height: 220px;
+    height: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    background-color: var(--dark-coffee-2);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* Scroll reveal base state */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .block.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .right-blocks a:hover .block {
+    box-shadow: 0 12px 30px rgba(7, 4, 3, 0.25);
+    transform: translateY(-4px);
+  }
+
+  .right-blocks a:hover .block.is-visible {
+    transform: translateY(-4px);
+  }
+
+  .block h4 {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    color: var(--dust-grey);
+    font-family: sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.03rem;
+  }
+
+
+  /* ─────────────────────────────────────────────
+    CONTACT
+  ───────────────────────────────────────────── */
+  #contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  #contact h3 {
+    font-family: sans-serif;
+    color: var(--coffee-bean);
+    font-size: clamp(5.2rem, 25vw, 6.5rem);
+    line-height: 1.15;
+    margin: 0;
+    max-width: 20ch;
+  }
+
+  #contact h4 {
+    font-family: 'Alumni Sans Pinstripe', 'Times New Roman', Times, serif;
+    font-weight: 400;
+    color: var(--dark-coffee-2);
+    font-size: clamp(1.3rem, 5.2vw, 1.7rem);
+    line-height: 1.4;
+    margin: 0 0 1rem;
+    max-width: 42ch;
+  }
+
+  .btn-wrapper{
+    padding: .5rem;
+    padding-left: 1.75rem;
+    border-radius: 50px;
+    margin: 0;
+    background-color: var(--coffee-bean);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .btn-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(7, 4, 3, 0.25);
+  }
+
+  .btn-wrapper a{
+    text-decoration: none;
+    color: var(--dust-grey);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .btn-wrapper p{
+    margin: 0;
+    font-family: sans-serif;
+    font-size: clamp(1rem, 3.6vw, 1.15rem);
+    letter-spacing: 0.02rem;
+    white-space: nowrap;
+  }
+
+  .arrow-wrapper{
+    width: 3rem;
+    height: 3rem;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--soft-peach);
+    color: var(--coffee-bean);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  .arrow-wrapper svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .btn-wrapper a:hover .arrow-wrapper {
+    transform: rotate(45deg);
+    background-color: var(--almond-cream);
+  }
+
+/* ─────────────────────────────────────────────
+    FOOTER 
+  ───────────────────────────────────────────── */
+  footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--dark-coffee);
+    padding: 4rem 2rem 2.5rem;
+  }
+
+  .brand-footer h2{
+    font-size: clamp(3.5rem, 12vw, 10rem);
+    color: var(--dust-grey);
+    margin: 0;
+  }
+
+  .brand-footer{
+    margin-bottom: 2.5rem;
+  }
+
+  .footer-link-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    list-style: none;
+    padding-top: 2rem;
+    margin: 0;
+    border-top: 1px solid rgba(233, 219, 203, 0.25);
+    width: 100%;
+    max-width: 480px;
+  }
+
+  footer a{
+    text-decoration: none;
+    font-family: 'Poiret One', sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.04rem;
+    max-height: 20%;
+    color: var(--dust-grey);
+    transition: color 0.3s ease;
+  }
+
+  footer a:hover {
+    color: var(--soft-peach);
+  }
+  /* ─────────────────────────────────────────────
+    RESPONSIVENESS
+  ───────────────────────────────────────────── */
+
+
   @media (max-width:970px) {
     #page-title {
       text-align: center;
@@ -429,6 +659,29 @@
 
     #copy-wrapper {
       padding: 2rem;
+    }
+
+    #offers {
+      flex-direction: column;
+    }
+
+    .left-block {
+      flex: none;
+      padding: 2.5rem 2rem;
+      border-radius: 24px;
+    }
+
+    .offer-arrow {
+      display: none;
+    }
+
+    .right-blocks {
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+    }
+
+    .block {
+      min-height: 160px;
     }
   }
 

@@ -50,4 +50,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ── Scroll reveal: stagger the offer blocks up one by one ──
+    const revealContainer = document.querySelector('.right-blocks');
+    const revealBlocks = revealContainer ? revealContainer.querySelectorAll('.block') : [];
+
+    if (revealContainer && revealBlocks.length) {
+        revealBlocks.forEach((block, i) => {
+            block.style.setProperty('--reveal-delay', `${i * 120}ms`);
+        });
+
+        // Observe the container itself (its box never moves) rather than the
+        // individual blocks, which are the elements being translated/faded.
+        // Watching a moving target caused the observer to re-fire mid-animation
+        // and glitch, especially right at the top edge of the viewport.
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                revealBlocks.forEach((block) => {
+                    block.classList.toggle('is-visible', entry.isIntersecting);
+                });
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '-10% 0px -10% 0px'
+        });
+
+        revealObserver.observe(revealContainer);
+    }
   });
