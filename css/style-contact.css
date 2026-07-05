@@ -1,0 +1,278 @@
+/* ─────────────────────────────────────────────
+   CONTACT PAGE
+   Nav, footer, fonts, and color tokens all live in
+   style-index.css and are shared site-wide — this
+   file only styles what's unique to this page.
+───────────────────────────────────────────── */
+
+html {
+    scroll-behavior: smooth;
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* ─────────────────────────────────────────────
+     PAGE WRAPPER
+  ───────────────────────────────────────────── */
+  main {
+    min-height: 100vh;
+    padding-top: 9rem;
+    padding-bottom: 6rem;
+  }
+  
+  /* ─────────────────────────────────────────────
+     CONTACT LAYOUT
+     Two columns: left = heading + info, right = form
+  ───────────────────────────────────────────── */
+  .contact-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 5vw;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 4vw;
+    animation: fadeInUp 0.7s ease-out both;
+  }
+  
+  /* ─────────────────────────────────────────────
+     LEFT COLUMN
+  ───────────────────────────────────────────── */
+  .contact-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+  }
+  
+  .contact-heading {
+    font-family: sans-serif;
+    font-size: clamp(2.6rem, 6vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--coffee-bean);
+    letter-spacing: 0.01rem;
+  }
+
+  #contact-head{
+    padding-top: 2rem;
+  }
+  
+  .contact-heading em {
+    font-family: 'Alumni Sans Pinstripe', 'Times New Roman', Times, serif;
+    color: var(--mahogany-red);
+    font-style: italic;
+    font-weight: 400;
+  }
+  
+  .contact-sub {
+    font-family: sans-serif;
+    font-size: clamp(1.15rem, 1.4vw, 1.05rem);
+    color: var(--dark-coffee-2);
+    line-height: 1.75;
+    max-width: 380px;
+  }
+  
+  /* Contact detail rows */
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    margin-top: 0.5rem;
+  }
+  .contact-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+  .contact-detail-item svg {
+    width: 24px; height: 24px;
+    flex-shrink: 0;
+    stroke: var(--mahogany-red);
+  }
+  .contact-detail-item a {
+    font-family: sans-serif;
+    font-size: 1.15rem;
+    color: var(--coffee-bean);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 1px;
+    transition: color var(--transition-base);
+  }
+  .contact-detail-item a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%; height: 1px;
+    background: var(--mahogany-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 280ms ease;
+  }
+  .contact-detail-item a:hover { color: var(--mahogany-red); }
+  .contact-detail-item a:hover::after { transform: scaleX(1); }
+  
+  /* ─────────────────────────────────────────────
+     RIGHT COLUMN — FORM
+  ───────────────────────────────────────────── */
+  .contact-right {
+    position: relative;
+    flex: 1.1;
+    background-color: rgba(253, 222, 155, 0.14);
+    border: 1px solid rgba(14, 3, 6, 0.08);
+    border-radius: 24px;
+    padding: 2.5rem 2.5rem 2rem;
+  }
+
+  #contactForm{
+    margin: 2rem;
+  }
+  
+  /* Small deco corner ticks, echoing the hero frame / social panel motif */
+  .contact-right::before,
+  .contact-right::after {
+    content: '';
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-color: var(--mahogany-red);
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  .contact-right::before {
+    top: 14px; left: 14px;
+    border-top: 1.5px solid;
+    border-left: 1.5px solid;
+  }
+  .contact-right::after {
+    bottom: 14px; right: 14px;
+    border-bottom: 1.5px solid;
+    border-right: 1.5px solid;
+  }
+  
+  /* Field groups */
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 1.4rem;
+  }
+  .field-group label {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--mahogany-red);
+  }
+  .field-group input,
+  .field-group textarea {
+    font-family: sans-serif;
+    font-size: 0.95rem;
+    color: var(--coffee-bean);
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(14, 3, 6, 0.15);
+    border-radius: 4px;
+    padding: 12px 16px;
+    width: 100%;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    outline: none;
+    resize: none;
+  }
+  .field-group textarea { height: 140px; }
+  .field-group input::placeholder,
+  .field-group textarea::placeholder {
+    color: var(--dark-coffee-2);
+    opacity: 0.45;
+  }
+  .field-group input:focus,
+  .field-group textarea:focus {
+    border-color: var(--mahogany-red);
+    box-shadow: 0 0 0 3px rgba(124, 34, 20, 0.12);
+  }
+  .field-group input.invalid,
+  .field-group textarea.invalid {
+    border-color: var(--mahogany-red);
+  }
+  .field-error {
+    font-size: 0.78rem;
+    color: var(--mahogany-red);
+    display: none;
+  }
+  .field-error.visible { display: block; }
+  
+  /* ─────────────────────────────────────────────
+     FORM BANNERS
+  ───────────────────────────────────────────── */
+  .form-banner {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-family: sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+  .form-banner.visible { display: flex; }
+  .form-banner svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .form-success {
+    background-color: rgba(253, 222, 155, 0.25);
+    color: var(--coffee-bean);
+    border: 1px solid rgba(253, 222, 155, 0.5);
+  }
+  .form-error {
+    background-color: rgba(124, 34, 20, 0.08);
+    color: var(--mahogany-red);
+    border: 1px solid rgba(124, 34, 20, 0.25);
+  }
+  
+  /* ─────────────────────────────────────────────
+     SUBMIT BUTTON — matches the homepage contact CTA
+  ───────────────────────────────────────────── */
+  .submit-btn {
+    width: 100%;
+    padding: 14px 24px;
+    background-color: var(--coffee-bean);
+    color: var(--dust-grey);
+    border: 1px solid transparent;
+    border-radius: 50px;
+    font-family: sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+  }
+  .submit-btn:hover:not(:disabled) {
+    background-color: var(--mahogany-red);
+  }
+  .submit-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+  .btn-sending { display: none; }
+  .submit-btn.sending .btn-label  { display: none; }
+  .submit-btn.sending .btn-sending { display: inline; }
+  
+  /* ─────────────────────────────────────────────
+     MOBILE
+  ───────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    main {
+      padding-top: 7rem;
+    }
+  
+    .contact-wrapper {
+      flex-direction: column;
+      padding: 0 6vw;
+      gap: 3rem;
+    }
+    .contact-right {
+      width: 100%;
+      padding: 2rem 1.5rem;
+    }
+  }
