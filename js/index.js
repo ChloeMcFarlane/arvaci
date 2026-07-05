@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header');
+
+    if (header) {
+        const SCROLL_THRESHOLD = 40;
+
+        const updateHeaderState = () => {
+            header.classList.toggle('scrolled', window.scrollY > SCROLL_THRESHOLD);
+        };
+
+        updateHeaderState();
+        window.addEventListener('scroll', updateHeaderState, { passive: true });
+    }
+
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('mobile-nav');
     const overlay = document.getElementById('mobile-nav-overlay');
@@ -76,5 +89,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         revealObserver.observe(revealContainer);
+    }
+
+    // ── Scroll reveal: standalone headings float up into view ──
+    const setupHeadingReveal = (containerSelector) => {
+        const container = document.querySelector(containerSelector);
+        const headings = container ? container.querySelectorAll('.reveal-heading') : [];
+        if (!container || !headings.length) return;
+
+        const headingObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                headings.forEach((heading) => {
+                    heading.classList.toggle('is-visible', entry.isIntersecting);
+                });
+            });
+        }, {
+            threshold: 0.3,
+            rootMargin: '-10% 0px -10% 0px'
+        });
+
+        headingObserver.observe(container);
+    };
+
+    setupHeadingReveal('#intro');
+    setupHeadingReveal('#contact');
+
+    // ── Scroll reveal: generic fade-up, used across intro photos, story
+    //    copy, the social panel, and contact — same idea as the offer
+    //    blocks above, just applied wherever a .fade-up shows up ──
+    document.querySelectorAll('.grid-wrapper').forEach((group) => {
+        group.querySelectorAll('.fade-up').forEach((item, i) => {
+            item.style.setProperty('--reveal-delay', `${i * 100}ms`);
+        });
+    });
+
+    const looseFadeUps = document.querySelectorAll('.fade-up');
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: '-8% 0px -8% 0px'
+    });
+
+    looseFadeUps.forEach((el) => fadeObserver.observe(el));
+
+    // ── Social videos: play muted/looped while in view, pause when scrolled
+    //    away so they don't keep decoding in the background ──
+    const socialVideos = document.querySelectorAll('.video-frame video');
+
+    if (socialVideos.length) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const video = entry.target;
+                if (entry.isIntersecting) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.25 });
+
+        socialVideos.forEach((video) => videoObserver.observe(video));
     }
   });
