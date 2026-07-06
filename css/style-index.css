@@ -211,10 +211,12 @@
   
   .nav-links {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     list-style-type: none;
     padding: 0;
     margin: 0;
-    gap: 5rem;
+    gap: clamp(1.25rem, 3vw, 3.5rem);
     transition: var(--transition-base);
   }
 
@@ -224,12 +226,14 @@
       overflow: hidden;
       opacity: 0;
       visibility: hidden;
+      flex-wrap: nowrap;
       transform: translateY(-15px);
       transition: max-height var(--transition-base), opacity var(--transition-base), transform var(--transition-base), visibility var(--transition-base);
     }
 
     .nav-links.active {
-      max-height: 500px;
+      max-height: min(80vh, 700px);
+      overflow-y: auto;
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
@@ -240,12 +244,35 @@
     text-decoration: none;
     color: var(--dark-coffee);
     font-family: 'Alumni Sans Pinstripe', 'Times New Roman', Times, serif;
-    font-size: 2.1rem;
+    font-size: clamp(1.3rem, 1.7vw, 2.1rem);
+    white-space: nowrap;
     transition: color 0.3s ease;
   }
   
   .nav-links li a:hover {
     color: var(--mahogany-red);
+  }
+
+  /* "Order Now" reads as an external CTA, not another nav item, so it gets
+     its own compact pill instead of competing for space at display size */
+  .nav-links li a.nav-cta {
+    font-family: sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background-color: var(--coffee-bean);
+    color: var(--dust-grey);
+    padding: 0.65rem 1.25rem;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-links li a.nav-cta:hover {
+    background-color: var(--mahogany-red);
+    color: var(--dust-grey);
   }
   
   /* Hamburger Toggle Button Styling */
@@ -809,7 +836,7 @@
     font-family: 'Alumni Sans Pinstripe', 'Times New Roman', Times, serif;
     font-weight: 400;
     color: var(--dark-coffee-2);
-    font-size: clamp(1.3rem, 5.2vw, 1.7rem);
+    font-size: clamp(1.5rem, 6vw, 1.95rem);
     line-height: 1.4;
     margin: 0 0 1rem;
     max-width: 42ch;
@@ -970,6 +997,15 @@
       border-top: 1px solid rgba(0,0,0,0.08);
       border-radius: 0 0 10px 10px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .nav-links li a {
+      font-size: 2.1rem;
+    }
+
+    .nav-links li a.nav-cta {
+      font-size: 0.85rem;
+      padding: 0.85rem 1.75rem;
     }
   
     .nav-toggle.open span:nth-child(1) {

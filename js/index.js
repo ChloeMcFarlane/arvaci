@@ -115,25 +115,35 @@ document.addEventListener('DOMContentLoaded', () => {
     setupHeadingReveal('#contact');
 
     // ── Scroll reveal: generic fade-up, used across intro photos, story
-    //    copy, the social panel, and contact — same idea as the offer
-    //    blocks above, just applied wherever a .fade-up shows up ──
+    //    copy, the social showcase, and contact. Each group is observed via
+    //    its stable parent .container rather than the fading element itself —
+    //    watching the moving target caused the observer to re-fire mid-
+    //    transition right at the viewport edge (same issue the offer blocks
+    //    had), which is what caused the social section's glitchy reveal ──
     document.querySelectorAll('.grid-wrapper').forEach((group) => {
         group.querySelectorAll('.fade-up').forEach((item, i) => {
             item.style.setProperty('--reveal-delay', `${i * 100}ms`);
         });
     });
 
-    const looseFadeUps = document.querySelectorAll('.fade-up');
+    const fadeUpGroups = new Map();
+    document.querySelectorAll('.fade-up').forEach((el) => {
+        const stableContainer = el.closest('.container') || el.parentElement;
+        if (!fadeUpGroups.has(stableContainer)) fadeUpGroups.set(stableContainer, []);
+        fadeUpGroups.get(stableContainer).push(el);
+    });
+
     const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-            entry.target.classList.toggle('is-visible', entry.isIntersecting);
+            const items = fadeUpGroups.get(entry.target) || [];
+            items.forEach((item) => item.classList.toggle('is-visible', entry.isIntersecting));
         });
     }, {
         threshold: 0.15,
         rootMargin: '-8% 0px -8% 0px'
     });
 
-    looseFadeUps.forEach((el) => fadeObserver.observe(el));
+    fadeUpGroups.forEach((items, stableContainer) => fadeObserver.observe(stableContainer));
 
     // ── Social videos: play muted/looped while in view, pause when scrolled
     //    away so they don't keep decoding in the background ──
