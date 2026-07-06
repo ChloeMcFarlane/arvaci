@@ -124,6 +124,7 @@
   .deco-heading {
     position: relative;
     padding-bottom: 1.1rem;
+    letter-spacing: 1rem !important;
   }
 
   .deco-heading::after {
@@ -204,8 +205,8 @@
     text-decoration: none;
     color: var(--dark-coffee);
     font-family: sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.95rem;
+    font-weight: 500;
     letter-spacing: 0.05rem;
   }
   
@@ -216,7 +217,7 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
-    gap: clamp(1.25rem, 3vw, 3.5rem);
+    gap: clamp(2.95rem, 6vw, 3.5rem);
     transition: var(--transition-base);
   }
 
@@ -244,7 +245,7 @@
     text-decoration: none;
     color: var(--dark-coffee);
     font-family: 'Alumni Sans Pinstripe', 'Times New Roman', Times, serif;
-    font-size: clamp(1.3rem, 1.7vw, 2.1rem);
+    font-size: clamp(1.75rem, 1.7vw, 2.1rem);
     white-space: nowrap;
     transition: color 0.3s ease;
   }
@@ -508,6 +509,44 @@
     height: 500px;
   }
 
+  .order-btn-cta{
+  
+  }
+
+  .order-btn-cta a{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 5vh auto;
+    font-size: 2rem;
+    text-decoration: none;
+    padding: .25rem;
+    border: 2px solid var(--coffee-bean);
+    border-radius: 25px;
+    color: var(--almond-cream);
+    background-color: var(--coffee-bean);
+    font-family: 'Poiret One', sans-serif;
+    width: 90%;
+    max-width: 750px;
+
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .order-btn-cta a:hover {
+    background-color: transparent;
+    color: var(--coffee-bean);
+    /* Modern micro-interaction: subtle lift and expand */
+    transform: translateY(-2px) scale(1.02); 
+  }
+  
+  .order-btn-cta a:active {
+    /* Provides quick tactile feedback when clicked */
+    transform: translateY(0) scale(0.99);
+  }
+
+
   /* ─────────────────────────────────────────────
     STORY
   ───────────────────────────────────────────── */
@@ -515,10 +554,10 @@
     position: relative;
     display: flex;
     justify-content: center;
-    background-image: url('../arvaci-ASSETS/sitepic-2.png');
+    background-image: url('../arvaci-ASSETS/aboutimg.jpg');
     background-size: cover;
     background-position: center;
-    padding: 6rem 2rem;
+    padding: 9rem 2rem;
     margin-bottom: 10vh;
   }
 
@@ -544,6 +583,7 @@
     color: var(--coffee-bean);
     line-height: 1.6;
     margin-bottom: 0;
+    font-size: 1.25rem;
   }
 
 
@@ -673,7 +713,7 @@
   }
 
 
-  /* ─────────────────────────────────────────────
+/* ─────────────────────────────────────────────
     SOCIAL
   ───────────────────────────────────────────── */
   #social {
@@ -682,14 +722,17 @@
   }
 
   .social-showcase {
-    max-width: 1000px;
+    max-width: 1140px; /* Expanded grid frame slightly to make all videos larger overall */
     margin: 0 auto;
+    padding: 0 1.5rem;
   }
 
   .video-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    gap: 1.75rem; /* Slightly wider gap for premium breathability */
+    padding: 10vh 0;
+    align-items: center; /* Ensures the left and right elements anchor beautifully on the vertical middle */
   }
 
   .video-frame {
@@ -698,6 +741,25 @@
     border-radius: 20px;
     overflow: hidden;
     background-color: var(--dark-coffee-2);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .video-grid a:nth-child(2) .video-frame {
+    transform: scale(1.08); 
+    box-shadow: 0 14px 35px rgba(7, 4, 3, 0.2);
+    z-index: 2; 
+  }
+
+  /* Smooth interactive lift transitions on hover */
+  .video-grid a:nth-child(1):hover .video-frame,
+  .video-grid a:nth-child(3):hover .video-frame {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 24px rgba(7, 4, 3, 0.15);
+  }
+
+  .video-grid a:nth-child(2):hover .video-frame {
+    transform: scale(1.11) translateY(-4px); 
+    box-shadow: 0 18px 45px rgba(7, 4, 3, 0.3);
   }
 
   .video-frame video {
@@ -843,12 +905,16 @@
   }
 
   .btn-wrapper{
-    padding: .5rem;
-    padding-left: 1.75rem;
+    padding: .5rem 1rem .5rem 1.75rem; /* Added symmetrical protection on the right side */
     border-radius: 50px;
-    margin: 0;
+    margin: auto;
     background-color: var(--coffee-bean);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 35%;
+    min-width: 280px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn-wrapper:hover {
@@ -862,7 +928,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1.5rem;
+    justify-content: space-between; 
+    width: 100%;
+    gap: clamp(1.5rem, 5vw, 5rem); 
   }
 
   .btn-wrapper p{
@@ -968,6 +1036,27 @@
     }
   }
 
+  @media (max-width: 900px) {
+    .video-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .video-frame {
+      aspect-ratio: 2 / 3;
+      border-radius: 14px;
+    }
+    
+    /* Soften the scaling index slightly for medium screens */
+    .video-grid a:nth-child(2) .video-frame {
+      transform: scale(1.05);
+    }
+    .video-grid a:nth-child(2):hover .video-frame {
+      transform: scale(1.08) translateY(-2px);
+    }
+  }
+
+
   @media (max-width: 768px) {
     #navbar {
       /* Splits space between your brand (left) and hamburger (right) */
@@ -1000,7 +1089,7 @@
     }
 
     .nav-links li a {
-      font-size: 2.1rem;
+      font-size: 1.75rem;
     }
 
     .nav-links li a.nav-cta {
@@ -1087,6 +1176,36 @@
 
     .intro-copy {
       font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .video-grid {
+      grid-template-columns: 1fr; /* Stacked vertically on phones */
+      gap: 2.5rem; /* Extra spacing to frame items clearly */
+    }
+
+    .video-frame {
+      aspect-ratio: 16 / 10;
+    }
+
+    /* Reset sizing overrides on mobile viewports so single-column scrolling feels uniform */
+    .video-grid a:nth-child(2) .video-frame {
+      transform: scale(1);
+    }
+    .video-grid a:hover .video-frame,
+    .video-grid a:nth-child(2):hover .video-frame {
+      transform: translateY(-2px);
+    }
+
+    .social-caption {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .social-links {
+      justify-content: flex-start;
     }
   }
 
