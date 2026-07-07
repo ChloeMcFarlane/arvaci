@@ -1,0 +1,412 @@
+/* ─────────────────────────────────────────────
+     FONT FACES
+  ───────────────────────────────────────────── */
+  @font-face {
+    font-family: 'Alumni Sans Pinstripe';
+    src: url('../arvaci-ASSETS/AlumniSansPinstripe-Regular.ttf') format('truetype');
+    font-weight: 100 900; 
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Alumni Sans Pinstripe';
+    src: url('../arvaci-ASSETS/AlumniSansPinstripe-Italic.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Poiret One';
+    src: url('../arvaci-ASSETS/PoiretOne-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ─────────────────────────────────────────────
+     DESIGN TOKENS
+  ───────────────────────────────────────────── */
+  :root {
+    /* Neutral Palette */
+    --dust-grey: #e3dbd7ff;
+    --almond-cream: #e9dbcbff;
+    --soft-peach: #fdde9bff;
+    --coffee-bean: #0E0306ff;
+    --dark-coffee: #2d1b0fff;
+    --dark-coffee-2: #2e231fff;
+    --pitch-black: #130e0dff;
+    --black: #070403ff;
+    --mahogany-red: #7c2214ff;
+  
+    /* Animation */
+    --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ─────────────────────────────────────────────
+Body/ MAIN
+───────────────────────────────────────────── */
+
+main{
+    padding-top: 0vh;
+}
+
+/* ─────────────────────────────────────────────
+HERO
+───────────────────────────────────────────── */
+
+#hero{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: none;
+    height: clamp(450px, 65vh, 750px); 
+    overflow: hidden;
+    position: relative;
+}
+
+#hero img{
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    object-fit: cover;
+    display: block;
+    object-position: center;
+    will-change: transform;
+}
+
+/* ─────────────────────────────────────────────
+BEST-SELLERS
+───────────────────────────────────────────── */
+
+#best-sellers {
+    max-width: 100%;
+    background-color: var(--dark-coffee);
+    padding: 4.5rem 0 5rem;
+}
+
+#best-sellers h2 {
+    font-family: sans-serif;
+    font-weight: 600;
+    color: var(--almond-cream);
+    font-size: clamp(4rem, 9vw, 6.5rem);
+    letter-spacing: 0.02rem;
+    margin: 0 0 3rem;
+    padding: 0 1.5rem;
+}
+
+/* The base .grid-wrapper (from style-index.css) is already a flex row —
+   here it becomes the horizontally scrollable track for the cards */
+#best-sellers .grid-wrapper {
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0.5rem 1.5rem 1.5rem
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.best-seller-card {
+    flex: 0 0 auto;
+    width: clamp(220px, 26vw, 320px);
+    scroll-snap-align: start;
+    border: 2px solid var(--soft-peach);
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+.best-seller-card img {
+    display: block;
+    width: 100%;
+    height: clamp(220px, 30vw, 340px);
+    object-fit: cover;
+    
+    /* Disables default browser element dragging */
+    pointer-events: none; 
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.best-seller-card h4 {
+    margin: 0;
+    padding: 1.1rem 1rem;
+    text-align: center;
+    font-family: sans-serif;
+    color: var(--dust-grey);
+    font-size: 1.05rem;
+    letter-spacing: 0.03rem;
+    font-weight: 400;
+}
+
+/* ────────────────────────────────────────────────────────
+   BEST SELLERS GRAB SCROLLABLE TRACK
+   ──────────────────────────────────────────────────────── */
+   #best-sellers .grid-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth; /* Smooth animated snapping on click/scroll wheels */
+    padding: 0.5rem 1.5rem 1.5rem;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch; /* Liquid momentum on touch screens */
+    
+    /* Grab Interaction Indicators */
+    cursor: grab;
+    user-select: none; /* Prevents text/image highlights while dragging */
+}
+
+#best-sellers .grid-wrapper:active {
+    cursor: grabbing;
+}
+
+/* ────────────────────────────────────────────────────────
+  DYNAMIC MENU LAYOUT
+   ──────────────────────────────────────────────────────── */
+
+.dynamic-menu-section {
+    background-color: var(--coffee-bean);
+    padding: 6rem 4vw;
+    color: var(--almond-cream);
+}
+
+.menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Structural Two Column Split Grid Layout matching Fox standard */
+.menu-grid-split {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 6rem;
+}
+
+@media (max-width: 768px) {
+    .menu-grid-split {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+}
+
+.column-title {
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--soft-peach);
+    border-bottom: 1px solid rgba(253, 222, 155, 0.2);
+    padding-bottom: 0.75rem;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Balanced Clean Item Rows */
+.menu-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(233, 219, 203, 0.05);
+    padding: 1rem 0;
+}
+
+.item-meta {
+    flex: 1;
+}
+
+.item-name {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--almond-cream);
+    letter-spacing: 0.04em;
+}
+
+/* Compact Multi-Tier Price Display for Sizes */
+.price-container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.price-tier {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.size-label {
+    font-family: sans-serif;
+    font-size: 0.75rem;
+    color: var(--dust-grey);
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.15rem;
+}
+
+.item-price {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--soft-peach);
+}
+
+/* ────────────────────────────────────────────────────────
+   DYNAMIC NAVIGATION TABS
+   ──────────────────────────────────────────────────────── */
+   .menu-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid rgba(233, 219, 203, 0.15);
+    padding-bottom: 1.25rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: var(--dust-grey);
+    font-family: 'Poiret One', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.tab-btn:hover, 
+.tab-btn.active {
+    color: var(--soft-peach);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1.35rem;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--soft-peach);
+}
+
+/* ────────────────────────────────────────────────────────
+   GRID SPLIT TRACKING LAYOUT
+   ──────────────────────────────────────────────────────── */
+.dynamic-menu-section {
+    background-color: var(--coffee-bean);
+    padding: 6rem 4vw;
+    color: var(--almond-cream);
+}
+
+.menu-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-grid-split {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 6rem;
+}
+
+.column-title {
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--soft-peach);
+    border-bottom: 1px solid rgba(253, 222, 155, 0.2);
+    padding-bottom: 0.75rem;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.menu-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(233, 219, 203, 0.05);
+    padding: 1rem 0;
+}
+
+.item-meta {
+    flex: 1;
+}
+
+.item-name {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--almond-cream);
+    letter-spacing: 0.04em;
+}
+
+.price-container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.price-tier {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.size-label {
+    font-family: sans-serif;
+    font-size: 0.75rem;
+    color: var(--dust-grey);
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.15rem;
+}
+
+.item-price {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--soft-peach);
+}
+
+/* ────────────────────────────────────────────────────────
+   RESPONSIVENESS
+   ──────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .menu-grid-split {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #best-sellers {
+        padding: 3rem 0 3.5rem;
+    }
+
+    #best-sellers .grid-wrapper {
+        gap: 1rem;
+        padding: 0.5rem 1rem 1.25rem;
+    }
+
+    .best-seller-card {
+        width: clamp(180px, 62vw, 260px);
+    }
+
+    .best-seller-card img {
+        height: clamp(180px, 62vw, 260px);
+    }
+}
