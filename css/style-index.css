@@ -731,7 +731,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.75rem; /* Slightly wider gap for premium breathability */
-    padding: 10vh 0;
+    padding: 5vh 0;
     align-items: center; /* Ensures the left and right elements anchor beautifully on the vertical middle */
   }
 
