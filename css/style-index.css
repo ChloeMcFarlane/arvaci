@@ -44,6 +44,12 @@ body {
   line-height: 1.5;
 }
 
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--mahogany-red);
@@ -854,6 +860,7 @@ footer {
   align-items: center;
   background-color: var(--dark-coffee);
   padding: 4rem 2rem 2.5rem;
+  margin-bottom: 0 !important;
 }
 
 .brand-footer h2 {

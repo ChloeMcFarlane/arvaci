@@ -176,7 +176,7 @@ html {
     border: 1px solid rgba(14, 3, 6, 0.15);
     border-radius: 4px;
     padding: 12px 16px;
-    width: 100%;
+    width: 90%;
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
     outline: none;
     resize: none;

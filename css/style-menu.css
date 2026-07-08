@@ -98,15 +98,16 @@ BEST-SELLERS
     padding: 0 1.5rem;
 }
 
-/* The base .grid-wrapper (from style-index.css) is already a flex row —
+/* The base .grid-wrap (from style-index.css) is already a flex row —
    here it becomes the horizontally scrollable track for the cards */
-#best-sellers .grid-wrapper {
+#best-sellers .grid-wrap {
     justify-content: flex-start;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding: 0.5rem 1.5rem 1.5rem
     max-width: 100%;
     -webkit-overflow-scrolling: touch;
+    gap: 2rem;
 }
 
 .best-seller-card {
@@ -150,7 +151,7 @@ BEST-SELLERS
 /* ────────────────────────────────────────────────────────
    BEST SELLERS GRAB SCROLLABLE TRACK
    ──────────────────────────────────────────────────────── */
-   #best-sellers .grid-wrapper {
+   #best-sellers .grid-wrap {
     display: flex;
     justify-content: flex-start;
     overflow-x: auto;
@@ -165,7 +166,7 @@ BEST-SELLERS
     user-select: none; /* Prevents text/image highlights while dragging */
 }
 
-#best-sellers .grid-wrapper:active {
+#best-sellers .grid-wrap:active {
     cursor: grabbing;
 }
 
@@ -402,7 +403,7 @@ BEST-SELLERS
         padding: 3rem 0 3.5rem;
     }
 
-    #best-sellers .grid-wrapper {
+    #best-sellers .grid-wrap {
         gap: 1rem;
         padding: 0.5rem 1rem 1.25rem;
     }
