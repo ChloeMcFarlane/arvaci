@@ -119,6 +119,11 @@ BEST-SELLERS
     background-color: transparent;
 }
 
+#best-sellers .grid-wrapper img {
+    object-fit: cover; /* Ensures image fills the container cleanly without distorting */
+    display: block;
+}
+
 .best-seller-card img {
     display: block;
     width: 100%;
