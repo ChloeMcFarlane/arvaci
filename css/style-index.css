@@ -860,6 +860,7 @@ footer {
   align-items: center;
   background-color: var(--dark-coffee);
   padding: 4rem 2rem 2.5rem;
+  margin-top: 0 !important;  
   margin-bottom: 0 !important;
 }
 
